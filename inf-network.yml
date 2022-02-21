@@ -2,7 +2,7 @@
 - hosts: localhost
   vars:
     nios_provider:
-      host:192.168.48.4
+      host: info.test.com
       username: admin
       password: infoblox
       wapi_version: 2.7

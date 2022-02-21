@@ -1,0 +1,5 @@
+---
+nios_provider:
+  host: info.test.com
+  username: admin
+  password: infoblox

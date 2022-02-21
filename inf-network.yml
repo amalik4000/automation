@@ -1,5 +1,10 @@
 ---
-- hosts: nios
+- hosts: localhost
+  vars:
+    nios_provider:
+      host:192.168.48.4
+      password: admin
+      wapi_version: 2.7
   connection: local
   tasks:
     - name: return the next 5 available IP subnet for network 10.10.0.0/16

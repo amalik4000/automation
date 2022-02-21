@@ -1,22 +1,18 @@
 ---
 - hosts: localhost
- vars:
- nios_provider:
- host: 192.168.48.4
- username: admin
- password: infoblox
-wapi_version: 2.1
- connection: local
- tasks:
- - name: create network
- nios_network:
- network: 10.0.0.0/24
- network_view: ansibleNetView
- options:
- - name: domain-name
- value: infoblox.com
- extattrs:
- Site: Test Site
- comment: Created with Ansible
- state: present
-provider: "{{ nios_provider }}"
+  vars:
+    nios_provider:
+      host: 192.168.48
+      username: admin
+      password: infoblox
+      wapi_version: 2.1.4
+  connection: local
+  tasks:
+   - name: create network view
+     nios_network_view:
+       name: ansibleNetView
+       extattrs:
+         Site: Test Site
+       comment: Created with Ansible
+       state: present
+       provider: "{{ nios_provider }}"

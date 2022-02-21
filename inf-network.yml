@@ -5,7 +5,7 @@
       host: info.test.com
       username: admin
       password: infoblox
-      wapi_version: 2.7
+      
   connection: local
   tasks:
     - name: return the next 5 available IP subnet for network 10.10.0.0/16

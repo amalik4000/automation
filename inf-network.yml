@@ -1,18 +1,18 @@
 ---
-- hosts: localhost
-  vars:
-    nios_provider:
-      host: 192.168.48
-      username: admin
-      password: infoblox
-      wapi_version: 2.1.4
+- hosts: nios
   connection: local
   tasks:
-   - name: create network view
-     nios_network_view:
-       name: ansibleNetView
-       extattrs:
-         Site: Test Site
-       comment: Created with Ansible
-       state: present
-       provider: "{{ nios_provider }}"
+    - name: return the next 5 available IP subnet for network 10.10.0.0/16
+      set_fact:
+        networkaddr: "{{ lookup('nios_next_network', '10.10.0.0/16', cidr=24, num=5, provider=nios_provider) }}"
+        provider: "{{nios_provider}}"
+    - name: Print the subnet
+      debug:
+        var: networkaddr
+    - name: configure a new IPv4 networks
+      nios_network:
+        network: "{{ item }}"
+        comment: Adding new networks
+        state: present
+        provider: "{{nios_provider}}"
+      loop: "{{ networkaddr }}"

@@ -1,5 +1,10 @@
 ---
-nios_provider:
-  host: info.test.com
-  username: admin
-  password: infoblox
+- name: Infoblox get all Members
+  hosts: localhost
+  vars:
+    nios_provider:
+      host: info.test.com
+      username: admin
+      password: infoblox
+      wapi_version: 2.6.1
+  connection: local

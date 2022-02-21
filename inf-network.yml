@@ -3,7 +3,8 @@
   vars:
     nios_provider:
       host:192.168.48.4
-      password: admin
+      username: admin
+      password: infoblox
       wapi_version: 2.7
   connection: local
   tasks:

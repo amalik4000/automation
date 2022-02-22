@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  vars:
+    nios_provider:
+      host: info.test.com
+      username: admin
+      password: infoblox
+      
+  connection: local
+  tasks:
+    - name: fetch all member objects
+      set_fact:
+        members: "{{ lookup('nios', 'member', provider=nios_provider) }}"
+ 
+    - name: check the members
+      debug:
+        var: members
